@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             title: "IT Consulting & Digital Transformation",
             description: "Upgrade your business with smart IT strategies, cybersecurity, and cutting-edge AI and cloud solutions.",
-            image: "cloud.jpg"
+            image: "it-consult.jpg"
         },
         {
             title: "Training & Talent Development",
             description: "Empower your team with training in modern tools and programming. Mentorship and internships for aspiring developers.",
-            image: "mobile-app.jpg"
+            image: "talent-dev.jpg"
         },
         {
             title: "Cloud Solutions",
