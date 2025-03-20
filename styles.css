@@ -1,13 +1,20 @@
 /* styles.css */
 :root {
     /* Company Color Palette */
-    --primary-color: #87CEEB; /* Sky Blue */
-    --secondary-color: #FFD700; /* Gold */
-    --accent-color: #000000; /* Black */
-    --background-color: #FFFFFF; /* White */
-    --text-color: #333333; /* Dark Gray */
-    --white: #FFFFFF; /* Pure White */
-    --black: #000000; /* Pure Black */
+    --primary-color: #87CEEB;
+    /* Sky Blue */
+    --secondary-color: #FFD700;
+    /* Gold */
+    --accent-color: #000000;
+    /* Black */
+    --background-color: #FFFFFF;
+    /* White */
+    --text-color: #333333;
+    /* Dark Gray */
+    --white: #FFFFFF;
+    /* Pure White */
+    --black: #000000;
+    /* Pure Black */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --border-radius: 8px;
@@ -17,10 +24,14 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #5e637d; /* Dark background */
-        --text-color: #f5f5f5; /* Light text */
-        --white: #3a5056; /* Dark gray for cards */
-        --black: #f5f5f5; /* Light text */
+        --background-color: #5e637d;
+        /* Dark background */
+        --text-color: #f5f5f5;
+        /* Light text */
+        --white: #3a5056;
+        /* Dark gray for cards */
+        --black: #f5f5f5;
+        /* Light text */
     }
 }
 
@@ -33,12 +44,49 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     scroll-behavior: smooth;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE/Edge */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    user-select: none;
+    /* Standard syntax */
+    touch-action: manipulation;
+    /* Disable double-tap zoom */
+    -webkit-text-size-adjust: 100%;
+    /* Prevent text scaling in Safari */
+    text-size-adjust: 100%;
+    /* Prevent text scaling in other browsers */
+}
+/* Scroll-to-Top Button */
+#scroll-to-top {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 15px;
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 50%; /* Circular button */
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+#scroll-to-top:hover {
+    background-color: #555; /* Darker background on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+#scroll-to-top:active {
+    background-color: #222; /* Even darker background on click */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reset shadow */
+}
 /* Custom Scrollbar */
 body::-webkit-scrollbar {
     width: 10px;
@@ -99,7 +147,8 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a:focus {
-    background: rgba(255, 215, 0, 0.1); /* Gold with 10% opacity */
+    background: rgba(255, 215, 0, 0.1);
+    /* Gold with 10% opacity */
     color: var(--secondary-color);
 }
 
@@ -125,66 +174,93 @@ section h2 {
     background-color: #3a505634;
     border-radius: 10px;
 }
+
 /* Apply styles only to <li> elements inside a container with class "grid-list" */
 .grid-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
-    gap: 16px; /* Spacing between items */
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 items per row */
+    gap: 16px;
+    /* Spacing between items */
 }
 
 .grid-list li {
-    background-color: #3a505634;    /* Light grey background */
-    padding: 20px; /* Padding inside each item */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    font-family: 'Arial', sans-serif; /* Font family */
-    font-size: 16px; /* Font size */
-    color: #d0d0d0;    /* Text color */
-    text-align: center; /* Center text */
+    background-color: #3a505634;
+    /* Light grey background */
+    padding: 20px;
+    /* Padding inside each item */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+    font-family: 'Arial', sans-serif;
+    /* Font family */
+    font-size: 16px;
+    /* Font size */
+    color: #d0d0d0;
+    /* Text color */
+    text-align: center;
+    /* Center text */
 }
 
 .grid-list li:hover {
-    background-color: #1f1c1c43; /* Slightly darker background on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #1f1c1c43;
+    /* Slightly darker background on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect */
 }
 
-.grid-list li:active, .grid-list li:focus {
-    background-color: #d0d0d0; /* Even darker background when active/focused */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reset shadow to original size */
-    transform: translateY(0); /* Reset lift effect */
+.grid-list li:active,
+.grid-list li:focus {
+    background-color: #d0d0d0;
+    /* Even darker background when active/focused */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Reset shadow to original size */
+    transform: translateY(0);
+    /* Reset lift effect */
 }
 
 /* Optional: Add a bullet or icon before each list item */
 .grid-list li::before {
-    content: '•'; /* Bullet point */
-    color: #007BFF; /* Bullet color */
-    font-weight: bold; /* Make the bullet bold */
-    display: inline-block; 
-    width: 1em; /* Space between bullet and text */
-    margin-left: -1em; /* Align bullet with text */
+    content: '•';
+    /* Bullet point */
+    color: #007BFF;
+    /* Bullet color */
+    font-weight: bold;
+    /* Make the bullet bold */
+    display: inline-block;
+    width: 1em;
+    /* Space between bullet and text */
+    margin-left: -1em;
+    /* Align bullet with text */
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .grid-list {
-        grid-template-columns: repeat(3, 1fr); /* 3 items per row on tablets */
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 items per row on tablets */
     }
 }
 
 @media (max-width: 768px) {
     .grid-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller tablets */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 items per row on smaller tablets */
     }
 }
 
 @media (max-width: 480px) {
     .grid-list {
-        grid-template-columns: 1fr; /* 1 item per row on mobile */
+        grid-template-columns: 1fr;
+        /* 1 item per row on mobile */
     }
 }
 
