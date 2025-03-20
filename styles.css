@@ -1,0 +1,351 @@
+/* styles.css */
+:root {
+    /* Company Color Palette */
+    --primary-color: #87CEEB; /* Sky Blue */
+    --secondary-color: #FFD700; /* Gold */
+    --accent-color: #000000; /* Black */
+    --background-color: #FFFFFF; /* White */
+    --text-color: #333333; /* Dark Gray */
+    --white: #FFFFFF; /* Pure White */
+    --black: #000000; /* Pure Black */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --font-family: 'Merriweather', serif;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #5e637d; /* Dark background */
+        --text-color: #f5f5f5; /* Light text */
+        --white: #3a5056; /* Dark gray for cards */
+        --black: #f5f5f5; /* Light text */
+    }
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Standard syntax */
+}
+
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Header */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin: 10px 0 0;
+}
+
+nav ul li a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 18px;
+    transition: var(--transition);
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background: rgba(255, 215, 0, 0.1); /* Gold with 10% opacity */
+    color: var(--secondary-color);
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* About Section */
+#about p {
+    max-width: 90%;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: #3a505634;
+    border-radius: 10px;
+}
+/* Apply styles only to <li> elements inside a container with class "grid-list" */
+.grid-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 16px; /* Spacing between items */
+}
+
+.grid-list li {
+    background-color: #3a505634;    /* Light grey background */
+    padding: 20px; /* Padding inside each item */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    font-family: 'Arial', sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    color: #d0d0d0;    /* Text color */
+    text-align: center; /* Center text */
+}
+
+.grid-list li:hover {
+    background-color: #1f1c1c43; /* Slightly darker background on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.grid-list li:active, .grid-list li:focus {
+    background-color: #d0d0d0; /* Even darker background when active/focused */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reset shadow to original size */
+    transform: translateY(0); /* Reset lift effect */
+}
+
+/* Optional: Add a bullet or icon before each list item */
+.grid-list li::before {
+    content: '•'; /* Bullet point */
+    color: #007BFF; /* Bullet color */
+    font-weight: bold; /* Make the bullet bold */
+    display: inline-block; 
+    width: 1em; /* Space between bullet and text */
+    margin-left: -1em; /* Align bullet with text */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid-list {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-list {
+        grid-template-columns: 1fr; /* 1 item per row on mobile */
+    }
+}
+
+/* Services Section */
+#service-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.service-item {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Portfolio Section */
+#portfolio {
+    background: var(--white);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.portfolio-item {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.portfolio-item p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+    padding: 3px;
+}
+
+.portfolio-item:hover .overlay {
+    top: 0;
+}
+
+.portfolio-item .overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.portfolio-item .overlay p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Contact Section */
+#contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(135, 206, 235, 0.5);
+}
+
+#contact-form button {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+#contact-form button:hover,
+#contact-form button:focus {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+footer p {
+    margin: 5px 0;
+}
