@@ -58,22 +58,42 @@ document.addEventListener("DOMContentLoaded", function () {
         serviceList.appendChild(serviceItem);
     });
 
-    // Form submission logic with validation
     document.getElementById("contact-form").addEventListener("submit", function (event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-        if (!name || !email || !message) {
-            alert("Please fill out all fields before submitting.");
-            return;
-        }
+    if (!name || !email || !message) {
+        alert("Please fill out all fields before submitting.");
+        return;
+    }
 
+    // Replace with your Google Apps Script URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzgT9MBui1eAzuEtry_J9NDJVRIknlR6KHmglW6QnEo-fffvhc_3H11sTn_vzvqwi2w0Q/exec';
+    
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'name': name,
+            'email': email,
+            'message': message
+        })
+    })
+    .then(() => {
         alert("Thank you for reaching out! We will get back to you soon.");
         this.reset();
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        alert("Something went wrong. Please try again later.");
     });
+});
 
     // Scroll-to-top button logic
     const scrollToTopButton = document.createElement("button");
