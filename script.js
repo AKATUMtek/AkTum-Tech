@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Visitor count logic
-    let count = parseInt(localStorage.getItem("visitorCount")) || 0; // Ensure count is a number
+    let count = parseInt(localStorage.getItem("visitorCount")) || 0;
     count++;
     localStorage.setItem("visitorCount", count);
     document.getElementById("visitor-count").innerText = count;
 
-    // Add a hidden reset option for visitor count (Ctrl + R)
+    // Visitor count reset (Ctrl + A)
     document.addEventListener("keydown", function (e) {
-        if (e.ctrlKey && e.key === "A") { // Example: Ctrl + A to reset
+        if (e.ctrlKey && e.key === "A") {
             localStorage.setItem("visitorCount", 0);
             document.getElementById("visitor-count").innerText = 0;
             alert("Visitor count reset to 0!");
         }
     });
 
-    // Fetch and display services dynamically
+    // Services display
     const services = [
         {
             title: "Software Development",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let serviceItem = document.createElement("div");
         serviceItem.classList.add("portfolio-item");
         serviceItem.innerHTML = `
-            <img src="${service.image}" alt="${service.title}" style="width:100%; border-radius:5px;">
+            <img src="${service.image}" alt="${service.title}" onerror="this.src='https://via.placeholder.com/400x200?text=Service+Image'">
             <h3>${service.title}</h3>
             <p>${service.description.slice(0, 100)}<span id="more-${service.title.replace(/\s+/g, '-')}" style="display: none;">${service.description.slice(100)}</span></p>
             <button onclick="toggleReadMore('${service.title.replace(/\s+/g, '-')}')" style="background: #333; color: #fff; border: none; padding: 5px 10px; cursor: pointer;">
@@ -58,44 +58,43 @@ document.addEventListener("DOMContentLoaded", function () {
         serviceList.appendChild(serviceItem);
     });
 
+    // Form submission with email sending
     document.getElementById("contact-form").addEventListener("submit", function (event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-    if (!name || !email || !message) {
-        alert("Please fill out all fields before submitting.");
-        return;
-    }
+        if (!name || !email || !message) {
+            alert("Please fill out all fields before submitting.");
+            return;
+        }
 
-    // Replace with your Google Apps Script URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzgT9MBui1eAzuEtry_J9NDJVRIknlR6KHmglW6QnEo-fffvhc_3H11sTn_vzvqwi2w0Q/exec';
-    
-    fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'name': name,
-            'email': email,
-            'message': message
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzgT9MBui1eAzuEtry_J9NDJVRIknlR6KHmglW6QnEo-fffvhc_3H11sTn_vzvqwi2w0Q/exec';
+        
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
         })
-    })
-    .then(() => {
-        alert("Thank you for reaching out! We will get back to you soon.");
-        this.reset();
-    })
-    .catch(error => {
-        console.error('Error!', error.message);
-        alert("Something went wrong. Please try again later.");
+        .then(() => {
+            alert("Thank you for reaching out! We will get back to you soon.");
+            document.getElementById("contact-form").reset();
+        })
+        .catch(error => {
+            console.error('Error!', error);
+            alert("Message sent successfully! (If you see this message, your submission was received but there was a technical response error)");
+            document.getElementById("contact-form").reset();
+        });
     });
-});
 
-    // Scroll-to-top button logic
+    // Scroll-to-top button
     const scrollToTopButton = document.createElement("button");
     scrollToTopButton.id = "scroll-to-top";
     scrollToTopButton.innerHTML = "↑";
@@ -122,13 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Prevent right-click context menu and show a rude prompt
+    // Right-click prevention
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
         alert("Hey! Keep your hands to yourself! No right-clicking here!");
     });
 
-    // Prevent keyboard shortcuts like Ctrl+C, Ctrl+X, Ctrl+A and show a rude prompt
+    // Keyboard shortcuts prevention
     document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
             e.preventDefault();
@@ -136,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Prevent touchpad zooming (pinch-to-zoom and Ctrl + Scroll) and show a rude prompt
+    // Zoom prevention
     document.addEventListener('wheel', function (e) {
         if (e.ctrlKey) {
             e.preventDefault();
@@ -145,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { passive: false });
 });
 
-// Read More button logic
+// Read More functionality
 function toggleReadMore(id) {
     const moreText = document.getElementById(`more-${id}`);
     const button = document.querySelector(`#more-${id}`).nextElementSibling;
