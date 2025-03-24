@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Visitor count logic
-    let count = parseInt(localStorage.getItem("visitorCount")) || 0;
+    let count = parseInt(localStorage.getItem("visitorCount")) || 0; // Ensure count is a number
     count++;
     localStorage.setItem("visitorCount", count);
     document.getElementById("visitor-count").innerText = count;
 
-    // Visitor count reset (Ctrl + A)
+    // Add a hidden reset option for visitor count (Ctrl + R)
     document.addEventListener("keydown", function (e) {
-        if (e.ctrlKey && e.key === "A") {
+        if (e.ctrlKey && e.key === "A") { // Example: Ctrl + A to reset
             localStorage.setItem("visitorCount", 0);
             document.getElementById("visitor-count").innerText = 0;
             alert("Visitor count reset to 0!");
         }
     });
 
-    // Services display
+    // Fetch and display services dynamically
     const services = [
         {
             title: "Software Development",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let serviceItem = document.createElement("div");
         serviceItem.classList.add("portfolio-item");
         serviceItem.innerHTML = `
-            <img src="${service.image}" alt="${service.title}" onerror="this.src='https://via.placeholder.com/400x200?text=Service+Image'">
+            <img src="${service.image}" alt="${service.title}" style="width:100%; border-radius:5px;">
             <h3>${service.title}</h3>
             <p>${service.description.slice(0, 100)}<span id="more-${service.title.replace(/\s+/g, '-')}" style="display: none;">${service.description.slice(100)}</span></p>
             <button onclick="toggleReadMore('${service.title.replace(/\s+/g, '-')}')" style="background: #333; color: #fff; border: none; padding: 5px 10px; cursor: pointer;">
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         serviceList.appendChild(serviceItem);
     });
 
-    // Form submission with email sending
+    // Form submission logic with validation
     document.getElementById("contact-form").addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -71,30 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', message);
-
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmK8DJo0Xt3ujwaYosl98CIOYc-LN_HueeaODvg30T/dev';
-        
-        fetch(scriptURL, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors'
-        })
-        .then(() => {
-            alert("Thank you for reaching out! We will get back to you soon.");
-            document.getElementById("contact-form").reset();
-        })
-        .catch(error => {
-            console.error('Error!', error);
-            alert("Message sent successfully! (If you see this message, your submission was received but there was a technical response error)");
-            document.getElementById("contact-form").reset();
-        });
+        alert("Thank you for reaching out! We will get back to you soon.");
+        this.reset();
     });
 
-    // Scroll-to-top button
+    // Scroll-to-top button logic
     const scrollToTopButton = document.createElement("button");
     scrollToTopButton.id = "scroll-to-top";
     scrollToTopButton.innerHTML = "↑";
@@ -121,13 +102,13 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Right-click prevention
+    // Prevent right-click context menu and show a rude prompt
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
         alert("Hey! Keep your hands to yourself! No right-clicking here!");
     });
 
-    // Keyboard shortcuts prevention
+    // Prevent keyboard shortcuts like Ctrl+C, Ctrl+X, Ctrl+A and show a rude prompt
     document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
             e.preventDefault();
@@ -135,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Zoom prevention
+    // Prevent touchpad zooming (pinch-to-zoom and Ctrl + Scroll) and show a rude prompt
     document.addEventListener('wheel', function (e) {
         if (e.ctrlKey) {
             e.preventDefault();
@@ -144,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { passive: false });
 });
 
-// Read More functionality
+// Read More button logic
 function toggleReadMore(id) {
     const moreText = document.getElementById(`more-${id}`);
     const button = document.querySelector(`#more-${id}`).nextElementSibling;
