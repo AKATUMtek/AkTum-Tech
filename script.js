@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append('email', email);
         formData.append('message', message);
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzgT9MBui1eAzuEtry_J9NDJVRIknlR6KHmglW6QnEo-fffvhc_3H11sTn_vzvqwi2w0Q/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmK8DJo0Xt3ujwaYosl98CIOYc-LN_HueeaODvg30T/dev';
         
         fetch(scriptURL, {
             method: 'POST',
